@@ -2,25 +2,42 @@ package com.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 public class App 
 {
     public static void main( String[] args )
     {
-        File file;
+        String filePath;
         if(args.length == 0)
         {
             System.out.println("Using default input file: test.in");
-            file = new File("test.in");
+            filePath = "test.in";
         }
         else
-            file = new File(args[0]);
-
+        filePath = args[0];
+        
+        File file = new File(filePath);
         Activity[] activities = readInput(file);
         int sol = selectActivities(activities);
-        System.out.println(sol);
+        //Write solution
+        
+        String inputName = filePath.split("[\\/]")[filePath.split("[\\/]").length-1];
+        String outName = inputName.split("[.]")[0] + ".out";
+
+        File outFile = new File(outName);
+        try(Writer writer = new FileWriter(outFile))
+        {
+            writer.write(String.valueOf(sol));
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
     }
 
 
