@@ -1,1 +1,7 @@
+com\example\Compressor\Compressor.class
 com\example\Main.class
+com\example\Compressor\Huffman.class
+com\example\Compressor\Huffman$UnitFreqPair.class
+com\example\MyBufferedWriter.class
+com\example\Decompressor\Decompressor.class
+com\example\Compressor\Huffman$Node.class

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
 
 public class App 
 {
@@ -17,18 +16,19 @@ public class App
         if(args.length == 0)
         {
             System.out.println("Using default input file: test.in");
-            filePath = "test.in";
+            filePath = "C:\\My Files\\Uni Assignments\\CSE Year 3 term 1\\Algorithms\\Assignment 2\\test.in";
         }
         else
         filePath = args[0];
         
         File file = new File(filePath);
         Activity[] activities = readInput(file);
+        if (activities == null) return;
         int sol = selectActivities(activities);
         //Write solution
         
         String inputName = filePath.split("[\\/]")[filePath.split("[\\/]").length-1];
-        String outName = inputName.split("[.]")[0] + ".out";
+        String outName = filePath.substring(0, filePath.length()-inputName.length())+inputName.split("[.]")[0] + ".out";
 
         File outFile = new File(outName);
         try(Writer writer = new FileWriter(outFile))
